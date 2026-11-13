@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbit — US Real Estate Acquisition & Calling Infrastructure</title>
+  <meta name="description" content="Connecting US Real Estate Investors, Wholesalers & Realtors with elite cold calling operations, caller recruiting, and tactical sales training." />
+
+  <!-- Globally Unblocked Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-pure: #000000;
+      --bg-elevated: #07090e;
+      --bg-card: rgba(14, 17, 26, 0.72);
+      --border-subtle: rgba(255, 255, 255, 0.09);
+      --border-blue: rgba(55, 114, 255, 0.45);
+      --accent-blue: #3772FF;
+      --accent-blue-light: #6896FF;
+      --accent-glow: rgba(55, 114, 255, 0.38);
+      --text-white: #ffffff;
+      --text-grey: #a1a1aa;
+      --text-muted: #52525b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-pure);
+      color: var(--text-white);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--accent-blue);
+      color: #ffffff;
+    }
+
+    /* Tactile Film Grain Overlay */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Subtle Deep-Space Starfield & #3772FF Atmospheric Glow */
+    .space-atmosphere {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(55, 114, 255, 0.22), transparent 55%),
+        radial-gradient(circle at 85% 60%, rgba(55, 114, 255, 0.08), transparent 45%),
+        radial-gradient(1px 1px at 15% 22%, rgba(255, 255, 255, 0.35), transparent),
+        radial-gradient(1px 1px at 78% 18%, rgba(55, 114, 255, 0.6), transparent),
+        radial-gradient(1.5px 1.5px at 32% 68%, rgba(255, 255, 255, 0.25), transparent),
+        radial-gradient(1px 1px at 88% 76%, rgba(255, 255, 255, 0.3), transparent),
+        radial-gradient(1.5px 1.5px at 12% 84%, rgba(55, 114, 255, 0.5), transparent);
+    }
+
+    /* Orbital Background Geometry with Satellite Nodes */
+    .orbital-bg {
+      position: absolute;
+      top: -210px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 940px;
+      height: 940px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orbit-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .orbit-ring-1 {
+      width: 400px;
+      height: 400px;
+      border-color: rgba(55, 114, 255, 0.16);
+      animation: spinSlow 45s linear infinite;
+    }
+
+    .orbit-ring-2 {
+      width: 650px;
+      height: 650px;
+      border-style: dashed;
+      border-color: rgba(55, 114, 255, 0.14);
+      animation: spinReverse 75s linear infinite;
+    }
+
+    .orbit-ring-3 {
+      width: 900px;
+      height: 900px;
+      border-color: rgba(255, 255, 255, 0.04);
+    }
+
+    /* Glowing Orbital Satellite Dot on Ring */
+    .satellite-node {
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      box-shadow: 0 0 14px 3px var(--accent-blue);
+      transform: translateX(-50%);
+    }
+
+    @keyframes spinSlow {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes spinReverse {
+      from { transform: translate(-50%, -50%) rotate(360deg); }
+      to { transform: translate(-50%, -50%) rotate(0deg); }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Navigation */
+    header {
+      position: fixed;
+      top: 16px;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 16px;
+    }
+
+    .nav-shell {
+      max-width: 1140px;
+      margin: 0 auto;
+      height: 64px;
+      background: rgba(6, 8, 14, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Brand Wordmark with Subtle Orbital Planet Mark */
+    .brand-logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.65rem;
+      letter-spacing: -0.04em;
+      color: var(--text-white);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-mark {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      box-shadow: 0 0 12px var(--accent-blue);
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text-grey);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-white);
+    }
+
+    /* #3772FF Gradient & Glow Buttons */
+    .btn-primary {
+      background: linear-gradient(135deg, #3772FF 0%, #1D4ED8 100%);
+      color: var(--text-white);
+      font-weight: 600;
+      font-size: 0.86rem;
+      padding: 10px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(104, 150, 255, 0.45);
+      box-shadow: 0 0 24px var(--accent-glow);
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 36px rgba(55, 114, 255, 0.65);
+      filter: brightness(1.08);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-white);
+      font-weight: 500;
+      font-size: 0.88rem;
+      padding: 12px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent-blue);
+      background: rgba(55, 114, 255, 0.08);
+      box-shadow: 0 0 20px rgba(55, 114, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 165px 0 85px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Space-Themed Orbital Stamp (Subtle & Executive) */
+    .orbital-stamp {
+      position: absolute;
+      top: 125px;
+      right: 30px;
+      width: 112px;
+      height: 112px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    .stamp-text-ring {
+      width: 100%;
+      height: 100%;
+      animation: spinSlow 28s linear infinite;
+    }
+
+    .stamp-center-icon {
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(55, 114, 255, 0.12);
+      border: 1px solid rgba(55, 114, 255, 0.45);
+      box-shadow: 0 0 18px rgba(55, 114, 255, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(55, 114, 255, 0.08);
+      border: 1px solid rgba(55, 114, 255, 0.3);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #c7d8ff;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      box-shadow: 0 0 20px rgba(55, 114, 255, 0.15);
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      box-shadow: 0 0 12px var(--accent-blue);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(1.3); }
+    }
+
+    .hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.4rem, 5.6vw, 4.6rem);
+      font-weight: 800;
+      line-height: 1.07;
+      letter-spacing: -0.035em;
+      max-width: 920px;
+      margin: 0 auto 24px;
+      color: var(--text-white);
+    }
+
+    .text-gradient-blue {
+      background: linear-gradient(135deg, #FFFFFF 0%, #6896FF 45%, #3772FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(55, 114, 255, 0.28));
+    }
+
+    .hero p {
+      color: var(--text-grey);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      max-width: 670px;
+      margin: 0 auto 40px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 56px;
+    }
+
+    /* Live Telemetry Ticker */
+    .ticker-wrap {
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(8, 11, 18, 0.75);
+      padding: 14px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      gap: 48px;
+      animation: tickerMove 32s linear infinite;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-grey);
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ticker-tag {
+      color: #c7d8ff;
+      background: rgba(55, 114, 255, 0.16);
+      border: 1px solid rgba(55, 114, 255, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+    }
+
+    @keyframes tickerMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Section Headers */
+    .section-header {
+      margin-bottom: 44px;
+    }
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-blue-light);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+
+    /* Interactive Dual-Funnel Switcher */
+    .switcher-section {
+      padding: 80px 0 40px;
+    }
+
+    .Segmented-control {
+      display: inline-flex;
+      background: #080b12;
+      border: 1px solid var(--border-subtle);
+      padding: 5px;
+      border-radius: 999px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .seg-btn {
+      background: transparent;
+      color: var(--text-grey);
+      border: none;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .seg-btn.active {
+      background: linear-gradient(135deg, #3772FF 0%, #1D4ED8 100%);
+      color: var(--text-white);
+      box-shadow: 0 0 18px var(--accent-glow);
+    }
+
+    .funnel-panel {
+      display: none;
+      background: linear-gradient(145deg, rgba(16, 22, 36, 0.65) 0%, rgba(7, 9, 14, 0.92) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 40px;
+    }
+
+    .funnel-panel.active {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+      animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-box {
+      border-left: 2px solid rgba(55, 114, 255, 0.45);
+      padding-left: 20px;
+    }
+
+    .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent-blue-light);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .step-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: var(--text-white);
+    }
+
+    .step-box p {
+      font-size: 0.9rem;
+      color: var(--text-grey);
+    }
+
+    /* Asymmetric Bento Grid */
+    .services-section {
+      padding: 60px 0 90px;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .bento-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* #3772FF Cursor Spotlight Effect */
+    .bento-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        550px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(55, 114, 255, 0.15),
+        transparent 40%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .bento-card:hover::before {
+      opacity: 1;
+    }
+
+    .bento-card:hover {
+      border-color: var(--border-blue);
+      box-shadow: 0 10px 35px -10px rgba(55, 114, 255, 0.22);
+      transform: translateY(-2px);
+    }
+
+    .span-7 { grid-column: span 7; }
+    .span-5 { grid-column: span 5; }
+
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #d8e4ff;
+      background: rgba(55, 114, 255, 0.12);
+      border: 1px solid rgba(55, 114, 255, 0.3);
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 22px;
+      width: fit-content;
+    }
+
+    .bento-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .bento-card p {
+      color: var(--text-grey);
+      font-size: 0.96rem;
+      margin-bottom: 24px;
+    }
+
+    .pillar-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .pillar-chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #d4d4d8;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 12px;
+      border-radius: 8px;
+    }
+
+    /* Direct Contact Architecture */
+    .contact-section {
+      padding: 40px 0 110px;
+    }
+
+    .contact-vault {
+      background: radial-gradient(circle at top center, rgba(55, 114, 255, 0.18), rgba(8, 10, 16, 0.95) 70%);
+      border: 1px solid var(--border-blue);
+      box-shadow: 0 0 50px rgba(55, 114, 255, 0.12);
+      border-radius: 28px;
+      padding: 56px 40px;
+      text-align: center;
+    }
+
+    .contact-vault h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      margin-bottom: 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-vault p {
+      color: var(--text-grey);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .contact-box {
+      background: rgba(4, 6, 10, 0.75);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 28px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .contact-box:hover {
+      border-color: var(--border-blue);
+      box-shadow: 0 0 25px rgba(55, 114, 255, 0.14);
+    }
+
+    .contact-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent-blue-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .contact-value {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+      word-break: break-all;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .action-chip {
+      flex: 1;
+      text-align: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-white);
+      border: 1px solid var(--border-subtle);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .action-chip.primary {
+      background: linear-gradient(135deg, #3772FF 0%, #1D4ED8 100%);
+      border-color: rgba(104, 150, 255, 0.4);
+      color: var(--text-white);
+      box-shadow: 0 0 16px rgba(55, 114, 255, 0.35);
+    }
+
+    .action-chip:hover {
+      border-color: var(--accent-blue-light);
+      transform: translateY(-1px);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 36px 0;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: linear-gradient(135deg, #3772FF 0%, #1D4ED8 100%);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 12px 22px;
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(55, 114, 255, 0.45);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive Mobile Rules */
+    @media (max-width: 900px) {
+      .span-7, .span-5 {
+        grid-column: span 12;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero {
+        padding-top: 135px;
+      }
+      .orbital-stamp {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin: 0 auto 24px;
+        width: 96px;
+        height: 96px;
+      }
+      .bento-card, .funnel-panel, .contact-vault {
+        padding: 26px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Subtle Film Grain & Space Glow Atmosphere -->
+  <div class="noise-overlay"></div>
+  <div class="space-atmosphere"></div>
+
+  <!-- Orbital Geometry Background with Glowing Satellite Node -->
+  <div class="orbital-bg">
+    <div class="orbit-ring orbit-ring-1">
+      <div class="satellite-node"></div>
+    </div>
+    <div class="orbit-ring orbit-ring-2"></div>
+    <div class="orbit-ring orbit-ring-3"></div>
+  </div>
+
+  <!-- Sticky Navigation -->
+  <header>
+    <div class="nav-shell">
+      <a href="#" class="brand-logo" aria-label="Orbit Home">
+        <span>Orbit</span>
+        <span class="brand-mark"></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#how-it-works">Ecosystem</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Direct Contact</a>
+      </nav>
+      <a href="#contact" class="btn-primary">Partner With Orbit →</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero container">
+
+      <!-- Subtle Space-Themed Orbital Mission Stamp -->
+      <div class="orbital-stamp" aria-hidden="true">
+        <svg class="stamp-text-ring" viewBox="0 0 120 120">
+          <defs>
+            <path id="circlePath" d="M 60, 60 m -44, 0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0" />
+          </defs>
+          <text fill="#8ab0ff" font-family="'JetBrains Mono', monospace" font-size="8.2" letter-spacing="2.3">
+            <textPath href="#circlePath">
+              ORBIT TELEMETRY • US REAL ESTATE •
+            </textPath>
+          </text>
+        </svg>
+        <div class="stamp-center-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3772FF" stroke-width="2">
+            <circle cx="12" cy="12" r="4" fill="#3772FF"/>
+            <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(-28 12 12)"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="status-pill">
+        <span class="pulse-dot"></span>
+        <span>US Real Estate Acquisition & Calling Brokerage</span>
+      </div>
+
+      <h1>Where US Deal Makers Meet <span class="text-gradient-blue">Elite Calling Floors.</span></h1>
+
+      <p>
+        Orbit bridges the gap between US Real Estate Investors, Wholesalers, and Realtors seeking off-market deal flow—and high-performing Cold Calling Agencies ready to scale client acquisition, caller recruiting, and tactical sales training.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get Qualified Appointments</a>
+        <a href="#services" class="btn-outline">Explore Our 4 Core Pillars</a>
+      </div>
+    </section>
+
+    <!-- Live Market Telemetry Ticker -->
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <div class="ticker-item"><span class="ticker-tag">DEMAND SIDE</span> Investors • Wholesalers • Realtors (All 50 US States)</div>
+        <div class="ticker-item"><span class="ticker-tag">SUPPLY SIDE</span> Vetted Outbound Cold Calling Agencies & Dialer Floors</div>
+        <div class="ticker-item"><span class="ticker-tag">PILLAR 01</span> Off-Market Seller Qualification (Condition • Timeline • Motivation • Price)</div>
+        <div class="ticker-item"><span class="ticker-tag">PILLAR 02</span> B2B Client Acquisition for Calling Centers</div>
+        <div class="ticker-item"><span class="ticker-tag">ADD-ON</span> Professional Cold Calling Agent Recruiting & US Script Training</div>
+        <!-- Duplicate for seamless loop -->
+        <div class="ticker-item"><span class="ticker-tag">DEMAND SIDE</span> Investors • Wholesalers • Realtors (All 50 US States)</div>
+        <div class="ticker-item"><span class="ticker-tag">SUPPLY SIDE</span> Vetted Outbound Cold Calling Agencies & Dialer Floors</div>
+        <div class="ticker-item"><span class="ticker-tag">PILLAR 01</span> Off-Market Seller Qualification (Condition • Timeline • Motivation • Price)</div>
+      </div>
+    </div>
+
+    <!-- Interactive Dual-Funnel Switcher -->
+    <section id="how-it-works" class="switcher-section container">
+      <div class="section-header">
+        <span class="eyebrow">01 / Dual-Market Architecture</span>
+        <h2 class="section-title">Select Your Position in the Ecosystem</h2>
+      </div>
+
+      <div class="Segmented-control" role="tablist">
+        <button class="seg-btn active" onclick="switchTab('investors', this)">For Investors, Wholesalers & Realtors</button>
+        <button class="seg-btn" onclick="switchTab('agencies', this)">For Cold Calling Agencies</button>
+      </div>
+
+      <!-- Investors Panel -->
+      <div id="panel-investors" class="funnel-panel active">
+        <div class="step-box">
+          <span class="step-num">STEP 01 // MARKET MAPPING</span>
+          <h4>Define Your Buy-Box</h4>
+          <p>Share your target US zip codes, property criteria, and monthly acquisition goals with our team.</p>
+        </div>
+        <div class="step-box">
+          <span class="step-num">STEP 02 // FLOOR DEPLOYMENT</span>
+          <h4>Matched With Vetted Dialers</h4>
+          <p>We connect your pipeline to proven cold calling agencies or recruit and train dedicated professional cold calling agents for your floor.</p>
+        </div>
+        <div class="step-box">
+          <span class="step-num">STEP 03 // DEAL FLOW</span>
+          <h4>Receive Motivated Seller Appointments</h4>
+          <p>Every lead is vetted across Condition, Motivation, Timeline, and Asking Price before hitting your calendar.</p>
+        </div>
+      </div>
+
+      <!-- Calling Agencies Panel -->
+      <div id="panel-agencies" class="funnel-panel">
+        <div class="step-box">
+          <span class="step-num">STEP 01 // CAPACITY AUDIT</span>
+          <h4>Verify Your Dialing Floor</h4>
+          <p>We evaluate your current seat capacity, dialer infrastructure, and agent quality standards.</p>
+        </div>
+        <div class="step-box">
+          <span class="step-num">STEP 02 // B2B CLIENT ACQUISITION</span>
+          <h4>We Bring You Funded US Buyers</h4>
+          <p>Focus 100% on dialing operations while Orbit handles outbound B2B acquisition to sign US Investors and Wholesalers for your agency.</p>
+        </div>
+        <div class="step-box">
+          <span class="step-num">STEP 03 // SCALE & RETAIN</span>
+          <h4>Recruiting & Script Calibration</h4>
+          <p>Need more seats filled? Use our optional recruiting and US real estate training modules to scale client retention.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Asymmetric Bento Grid Services -->
+    <section id="services" class="services-section container">
+      <div class="section-header">
+        <span class="eyebrow">02 / Service Infrastructure</span>
+        <h2 class="section-title">Core Brokerage & Optional Growth Modules</h2>
+      </div>
+
+      <div class="bento-grid" id="bentoGrid">
+        <!-- Card 1: Investors/Wholesalers/Realtors -->
+        <article class="bento-card span-7">
+          <div>
+            <span class="card-badge">Core Service • Demand Side</span>
+            <h3>Motivated Seller Lead & Deal Flow</h3>
+            <p>
+              Built for US Real Estate Investors, Wholesalers, and Realtors who want consistent off-market deal flow without managing day-to-day cold calling headaches. We pair you with top-performing calling operations that deliver pre-vetted seller opportunities directly to your acquisition pipeline.
+            </p>
+          </div>
+          <div class="pillar-list">
+            <span class="pillar-chip">Property Condition Verified</span>
+            <span class="pillar-chip">True Motivation Audited</span>
+            <span class="pillar-chip">30-60 Day Timeline</span>
+            <span class="pillar-chip">Asking Price Anchored</span>
+          </div>
+        </article>
+
+        <!-- Card 2: Cold Calling Agencies -->
+        <article class="bento-card span-5">
+          <div>
+            <span class="card-badge">Core Service • Supply Side</span>
+            <h3>B2B Client Acquisition for Calling Agencies</h3>
+            <p>
+              Have trained agents and dialer capacity but need more paying US real estate clients? We act as your dedicated growth partner—sourcing, qualifying, and closing US Investors and Wholesalers for your agency on a transparent commission or fee partnership.
+            </p>
+          </div>
+          <div class="pillar-list">
+            <span class="pillar-chip">Ready-to-Sign Investors</span>
+            <span class="pillar-chip">Performance Partnerships</span>
+            <span class="pillar-chip">Zero Ad-Spend Risk</span>
+          </div>
+        </article>
+
+        <!-- Card 3: Recruiting Add-on -->
+        <article class="bento-card span-5">
+          <div>
+            <span class="card-badge">Optional Add-On 01</span>
+            <h3>Caller & Acquisition Recruiting</h3>
+            <p>
+              Eliminate turnover and bad hires. We source, screen, and voice-test C1/C2 English-proficient professional cold calling agents, lead managers, and acquisition specialists ready to plug immediately into your dialer and CRM.
+            </p>
+          </div>
+          <div class="pillar-list">
+            <span class="pillar-chip">Accent & Fluency Vetted</span>
+            <span class="pillar-chip">Speed-to-Seat Placement</span>
+          </div>
+        </article>
+
+        <!-- Card 4: Training Add-on (Updated Copy) -->
+        <article class="bento-card span-7">
+          <div>
+            <span class="card-badge">Optional Add-On 02</span>
+            <h3>Tactical US Real Estate Sales Training</h3>
+            <p>
+              Turn average dialers into high-converting professional cold calling agents. Our training curriculum covers US homeowner psychology, tonality control, live objection handling ("I need to think about it", "What's your offer?"), and daily KPI calibration.
+            </p>
+          </div>
+          <div class="pillar-list">
+            <span class="pillar-chip">Custom Script Engineering</span>
+            <span class="pillar-chip">Live Objection Roleplay</span>
+            <span class="pillar-chip">QA Call Auditing</span>
+            <span class="pillar-chip">KPI Conversion Playbooks</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Direct Contact Hub -->
+    <section id="contact" class="contact-section container">
+      <div class="contact-vault">
+        <span class="eyebrow">03 / Direct Dispatch</span>
+        <h2>Initiate a Partnership With Orbit</h2>
+        <p>
+          No bloated forms or waiting queues. Reach our leadership desk directly via email, phone, or WhatsApp to discuss deal flow, agency partnerships, or caller staffing.
+        </p>
+
+        <div class="contact-cards">
+          <!-- Email Box -->
+          <div class="contact-box">
+            <div>
+              <span class="contact-label">Direct Electronic Mail</span>
+              <div class="contact-value" style="margin-top: 8px;">orbit.agency.sd@gmail.com</div>
+            </div>
+            <div class="contact-actions">
+              <a href="mailto:orbit.agency.sd@gmail.com?subject=Orbit%20Partnership%20Inquiry" class="action-chip primary">Send Email</a>
+              <button class="action-chip" onclick="copyText('orbit.agency.sd@gmail.com', 'Email address copied')">Copy Email</button>
+            </div>
+          </div>
+
+          <!-- Phone & WhatsApp Box -->
+          <div class="contact-box">
+            <div>
+              <span class="contact-label">Direct Line & WhatsApp Desk</span>
+              <div class="contact-value" style="margin-top: 8px;">+20 109 242 8122</div>
+            </div>
+            <div class="contact-actions">
+              <a href="https://wa.me/201092428122?text=Hi%20Orbit%20Team%2C%20I%27m%20reaching%20out%20regarding%20your%20US%20Real%20Estate%20services." target="_blank" rel="noopener" class="action-chip primary">WhatsApp</a>
+              <a href="tel:+201092428122" class="action-chip">Call Direct</a>
+              <button class="action-chip" onclick="copyText('+201092428122', 'Phone number copied')">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Minimalist Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="brand-logo" style="font-size:1.25rem;">Orbit <span class="brand-mark" style="width:7px;height:7px;"></span></span>
+        <span>— US Real Estate Acquisition & Calling Infrastructure</span>
+      </div>
+      <div>© <span id="year"></span> Orbit Agency. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Copy Notification Toast -->
+  <div id="toast" class="toast">Copied to clipboard</div>
+
+  <script>
+    // Dynamic Copyright Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Cursor-Tracking #3772FF Spotlight on Bento Cards
+    const grid = document.getElementById('bentoGrid');
+    const cards = grid.querySelectorAll('.bento-card');
+
+    grid.addEventListener('mousemove', (e) => {
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // Dual-Funnel Tab Switcher
+    function switchTab(target, btnElement) {
+      document.querySelectorAll('.seg-btn').forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      document.querySelectorAll('.funnel-panel').forEach(panel => panel.classList.remove('active'));
+      document.getElementById(`panel-${target}`).classList.add('active');
+    }
+
+    // One-Click Clipboard Copy with Toast
+    function copyText(value, message) {
+      navigator.clipboard.writeText(value).then(() => {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2400);
+      });
+    }
+  </script>
+</body>
+</html>
