@@ -120,7 +120,7 @@
   <div class="form-container">
     <div class="header-text">
       <h1>Free Agent Training Program</h1>
-      <p>Join the Orbit Agency US Real Estate cohort.</p>
+      <p>Join the Orbit Agency Real Estate cohort.</p>
     </div>
 
     <!-- SUCCESS MESSAGE -->
@@ -133,8 +133,8 @@
     <form id="orbitForm">
       
       <div class="form-group">
-        <label>Full Name (in English)</label>
-        <input type="text" name="FullName" required placeholder="e.g. Ahmed Ali">
+        <label>Full Name </label>
+        <input type="text" name="FullName"
       </div>
 
       <div class="form-group">
@@ -150,7 +150,7 @@
         </div>
         <div class="form-group">
           <label>Nationality</label>
-          <input type="text" name="Nationality" required placeholder="e.g. Sudanese">
+          <input type="text" name="Nationality"
         </div>
       </div>
 
@@ -200,7 +200,7 @@
           </label>
           <label class="radio-label">
             <input type="radio" name="Experience" value="No Experience">
-            No prior experience (Fast learner)
+            No prior experience
           </label>
         </div>
       </div>
@@ -210,24 +210,17 @@
         <div class="radio-group">
           <label class="radio-label">
             <input type="radio" name="Hardware" value="Laptop + Headset" required>
-            I have a Laptop/PC + Headset (Ready to work)
+            I have a Laptop/PC + Headset
           </label>
           <label class="radio-label">
             <input type="radio" name="Hardware" value="Laptop Only">
-            I have a Laptop/PC (No Headset currently)
+            I have a Laptop/PC
           </label>
           <label class="radio-label">
             <input type="radio" name="Hardware" value="Smartphone Only">
-            Joining from Smartphone for now
+            Joining from Smartphone
           </label>
         </div>
-      </div>
-
-      <div class="form-group" style="margin-top: 30px;">
-        <label class="radio-label" style="border-color: rgba(55, 114, 255, 0.4);">
-          <input type="checkbox" name="FacebookFollow" value="Yes" required>
-          I confirm that I have followed the official Orbit-Agency Facebook page to activate my free training seat.
-        </label>
       </div>
 
       <button type="submit" class="submit-btn" id="submitBtn">Submit Application →</button>
@@ -244,7 +237,7 @@
 
     // 2. Cascade Country/City Logic
     const citiesData = {
-      "Sudan": ["Khartoum", "Omdurman", "Port Sudan", "Kassala", "Madani", "Other"],
+      "Sudan": ["Khartoum", "Port Sudan", "Madani", "Other"],
       "Egypt": ["Cairo", "Alexandria", "Giza", "Mansoura", "Other"],
       "Saudi Arabia": ["Riyadh", "Jeddah", "Mecca", "Dammam", "Other"],
       "UAE": ["Dubai", "Abu Dhabi", "Sharjah", "Other"],
