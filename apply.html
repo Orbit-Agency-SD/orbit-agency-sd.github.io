@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Orbit Agency — Training Application</title>
   
-  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
-  
-  <!-- Intl-Tel-Input for WhatsApp Flags -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
@@ -21,6 +18,11 @@
       --text-white: #ffffff;
       --text-grey: #a1a1aa;
     }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background-color: var(--bg-pure);
       color: var(--text-white);
@@ -33,85 +35,196 @@
       min-height: 100vh;
       background: radial-gradient(circle at top center, rgba(55, 114, 255, 0.15), transparent 60%), var(--bg-pure);
     }
+
     .form-container {
-      background: rgba(10, 14, 22, 0.85);
+      background: rgba(10, 14, 22, 0.9);
       border: 1px solid var(--border-subtle);
       border-radius: 24px;
       padding: 40px;
       width: 100%;
-      max-width: 600px;
-      margin: 40px 20px;
-      box-shadow: 0 10px 40px rgba(55, 114, 255, 0.1);
+      max-width: 720px;
+      margin: 32px 16px;
+      box-shadow: 0 10px 40px rgba(55, 114, 255, 0.12);
       backdrop-filter: blur(12px);
     }
-    .header-text { text-align: center; margin-bottom: 32px; }
-    .header-text h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; margin: 0 0 10px; color: var(--text-white); }
-    .header-text p { color: var(--text-grey); font-size: 0.95rem; margin: 0; }
-    .form-group { margin-bottom: 22px; }
-    .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; color: #d4d4d8; }
-    
-    input[type="text"], input[type="email"], select {
-      width: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--border-subtle);
+
+    .header-text {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .header-text h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.45rem, 3vw, 1.9rem);
+      margin: 0 0 10px;
       color: var(--text-white);
-      padding: 14px 16px;
+    }
+
+    .header-text p {
+      color: var(--text-grey);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      font-size: 0.88rem;
+      color: #d4d4d8;
+      line-height: 1.35;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6) !important;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-white) !important;
+      padding: 13px 16px;
       border-radius: 12px;
       font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       transition: all 0.3s ease;
-      box-sizing: border-box;
       appearance: none;
     }
-    input:focus, select:focus {
+
+    input:focus,
+    select:focus {
       outline: none;
       border-color: var(--accent-blue);
       box-shadow: 0 0 0 3px rgba(55, 114, 255, 0.25);
     }
+
     select {
-      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23a1a1aa%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-      background-repeat: no-repeat;
-      background-position: right 16px top 50%;
-      background-size: 10px auto;
+      padding-right: 36px !important;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23a1a1aa%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 14px center !important;
+      background-size: 10px auto !important;
     }
-    select option { background: #07090e; color: #fff; }
-    
-    .iti { width: 100%; } /* WhatsApp Input Fix */
-    .iti__country-list { background-color: #07090e; border: 1px solid var(--border-subtle); color: #fff; }
-    
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    
-    /* Checkbox & Radio */
-    .radio-group { display: flex; flex-direction: column; gap: 10px; }
-    .radio-label {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 0.9rem; color: var(--text-grey); cursor: pointer;
-      background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px;
-      border: 1px solid var(--border-subtle); transition: all 0.2s;
+
+    select option {
+      background: #07090e;
+      color: #fff;
     }
-    .radio-label:hover { border-color: rgba(55,114,255,0.5); }
-    .radio-label input { margin-top: 3px; cursor: pointer; accent-color: var(--accent-blue); }
-    
-    .submit-btn {
+
+    .iti {
       width: 100%;
+    }
+    .iti__country-list {
+      background-color: #07090e !important;
+      border: 1px solid var(--border-subtle) !important;
+      color: #fff !important;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      align-items: end;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .radio-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--text-grey);
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.2s;
+    }
+
+    .radio-label:hover {
+      border-color: rgba(55, 114, 255, 0.5);
+    }
+
+    .radio-label input {
+      margin-top: 3px;
+      cursor: pointer;
+      accent-color: var(--accent-blue);
+      flex-shrink: 0;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      max-width: 320px;
+      margin: 28px auto 0;
       background: linear-gradient(135deg, #3772FF 0%, #1D4ED8 100%);
       color: white;
       font-weight: 600;
       font-size: 1rem;
-      padding: 16px;
+      padding: 15px 28px;
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 0 20px rgba(55, 114, 255, 0.3);
+      box-shadow: 0 0 20px rgba(55, 114, 255, 0.35);
       transition: all 0.3s;
-      margin-top: 10px;
+      text-align: center;
     }
-    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(55, 114, 255, 0.5); }
-    .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-    
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(55, 114, 255, 0.55);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     #success-message {
-      display: none; text-align: center; color: #4ade80; padding: 20px;
-      background: rgba(74, 222, 128, 0.1); border-radius: 12px; border: 1px solid rgba(74, 222, 128, 0.3);
+      display: none;
+      text-align: center;
+      color: #4ade80;
+      padding: 20px;
+      background: rgba(74, 222, 128, 0.1);
+      border-radius: 12px;
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .form-container {
+        padding: 26px 18px;
+        margin: 16px 12px;
+      }
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+      }
+      .submit-btn {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -123,18 +236,16 @@
       <p>Join the Orbit Agency Real Estate cohort.</p>
     </div>
 
-    <!-- SUCCESS MESSAGE -->
     <div id="success-message">
       <h3 style="margin-top:0;">Application Submitted Successfully!</h3>
       <p style="margin-bottom:0;">We will contact you via WhatsApp soon.</p>
     </div>
 
-    <!-- FORM -->
     <form id="orbitForm">
       
       <div class="form-group">
-        <label>Full Name </label>
-        <input type="text" name="FullName"
+        <label>Full Name</label>
+        <input type="text" name="FullName" required>
       </div>
 
       <div class="form-group">
@@ -150,11 +261,11 @@
         </div>
         <div class="form-group">
           <label>Nationality</label>
-          <input type="text" name="Nationality"
+          <input type="text" name="Nationality" required>
         </div>
       </div>
 
-      <div class="grid-2">
+      <div class="grid-3">
         <div class="form-group">
           <label>Residence Country</label>
           <select id="countrySelect" name="Country" required onchange="populateCities()">
@@ -173,53 +284,56 @@
             <option value="" disabled selected>Select City</option>
           </select>
         </div>
-      </div>
-
-      <div class="form-group">
-        <label>English Proficiency Level</label>
-        <select name="EnglishLevel" required>
-          <option value="" disabled selected>Select Level</option>
-          <option value="A1/A2 (Beginner)">A1 / A2 (Beginner)</option>
-          <option value="B1 (Intermediate)">B1 (Intermediate)</option>
-          <option value="B2 (Upper-Intermediate)">B2 (Upper-Intermediate)</option>
-          <option value="C1 (Advanced)">C1 (Advanced)</option>
-          <option value="C2 / Native">C2 / Native</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>Previous Cold Calling / Sales Experience</label>
-        <div class="radio-group">
-          <label class="radio-label">
-            <input type="radio" name="Experience" value="US Real Estate Cold Calling" required>
-            Experienced in US Real Estate Cold Calling
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="Experience" value="Other Telemarketing">
-            Experienced in other Telemarketing / Call Center roles
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="Experience" value="No Experience">
-            No prior experience
-          </label>
+        <div class="form-group">
+          <label>English Proficiency Level</label>
+          <select name="EnglishLevel" required>
+            <option value="" disabled selected>Select Level</option>
+            <option value="A1">A1 (Beginner)</option>
+            <option value="A2">A2 (Elementary)</option>
+            <option value="B1">B1 (Intermediate)</option>
+            <option value="B2">B2 (Upper-Intermediate)</option>
+            <option value="C1">C1 (Advanced)</option>
+            <option value="C2">C2 (Proficient)</option>
+            <option value="Native">Native</option>
+          </select>
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Current Hardware Setup</label>
-        <div class="radio-group">
-          <label class="radio-label">
-            <input type="radio" name="Hardware" value="Laptop + Headset" required>
-            I have a Laptop/PC + Headset
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="Hardware" value="Laptop Only">
-            I have a Laptop/PC
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="Hardware" value="Smartphone Only">
-            Joining from Smartphone
-          </label>
+      <div class="grid-2">
+        <div class="form-group">
+          <label>Previous Cold Calling / Sales Experience</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="Experience" value="US Real Estate Cold Calling" required>
+              Experienced in US Real Estate Cold Calling
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="Experience" value="Other Telemarketing">
+              Experienced in other Telemarketing / Call Center roles
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="Experience" value="No Experience">
+              No prior experience
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Current Hardware Setup</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="Hardware" value="Laptop + Headset" required>
+              I have a Laptop/PC + Headset
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="Hardware" value="Laptop Only">
+              I have a Laptop/PC
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="Hardware" value="Smartphone Only">
+              Joining from Smartphone
+            </label>
+          </div>
         </div>
       </div>
 
@@ -228,21 +342,19 @@
   </div>
 
   <script>
-    // 1. Initialize WhatsApp Dropdown
     const phoneInputField = document.querySelector("#whatsapp");
     const phoneInput = window.intlTelInput(phoneInputField, {
       preferredCountries: ["sd", "eg", "sa", "ae", "qa"],
       utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
     });
 
-    // 2. Cascade Country/City Logic
     const citiesData = {
-      "Sudan": ["Khartoum", "Port Sudan", "Madani", "Other"],
+      "Sudan": ["Khartoum", "Omdurman", "Port Sudan", "Kassala", "Madani", "Other"],
       "Egypt": ["Cairo", "Alexandria", "Giza", "Mansoura", "Other"],
       "Saudi Arabia": ["Riyadh", "Jeddah", "Mecca", "Dammam", "Other"],
       "UAE": ["Dubai", "Abu Dhabi", "Sharjah", "Other"],
       "Qatar": ["Doha", "Al Rayyan", "Other"],
-      "Other": ["Type manually in the form notes or select Other"]
+      "Other": ["Other"]
     };
 
     function populateCities() {
@@ -252,33 +364,25 @@
       if (citiesData[country]) {
         citiesData[country].forEach(city => {
           let option = document.createElement("option");
-          option.value = city; option.text = city;
+          option.value = city;
+          option.text = city;
           citySelect.appendChild(option);
         });
-      } else {
-        let option = document.createElement("option");
-        option.value = "Other"; option.text = "Other";
-        citySelect.appendChild(option);
       }
     }
 
-    // 3. Handle Form Submission directly to Google Sheets
     const form = document.getElementById('orbitForm');
-    
-    // 🔥 استبدل هذا الرابط بالرابط الخاص بك (Web App URL) من جوجل شيت 🔥
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzDeJBjKHI2yX2DRz77W1t_AORLhdFBWgWRHky5glSO8YxCp2TblhwuxXg0t-00cLPfHw/exec'; 
+    // ضع رابط Google Apps Script الخاص بك هنا
+    const scriptURL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE';
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-      
       const btn = document.getElementById('submitBtn');
       btn.innerText = 'Submitting...';
       btn.disabled = true;
 
-      // Extract full WhatsApp number with country code
       document.getElementById('whatsapp-full').value = phoneInput.getNumber();
 
-      // Send Data
       fetch(scriptURL, { method: 'POST', body: new FormData(form)})
         .then(response => {
           form.style.display = 'none';
